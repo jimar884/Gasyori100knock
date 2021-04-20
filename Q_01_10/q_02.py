@@ -21,11 +21,11 @@ def grayscale(img):
 BASE_PATH = os.path.dirname(os.path.abspath(__file__))
 IMG_FILE_NAME = "kinkaku2.JPG"
 FULL_PATH = os.path.join(BASE_PATH, IMG_FILE_NAME)
-IMG = cv2.imread(FULL_PATH)
+img = cv2.imread(FULL_PATH)
 
-IMG2 = grayscale(IMG.copy().astype(np.float))
+img2 = grayscale(img.copy().astype(np.float))
 
 # cvtColorを使うことでhconcatできる
-IMG3 = cv2.hconcat([IMG, cv2.cvtColor(IMG2, cv2.COLOR_GRAY2BGR)])
-cv2.imshow('compare 2 images', IMG3)
+img3 = cv2.hconcat([img, cv2.cvtColor(img2, cv2.COLOR_GRAY2BGR)])
+cv2.imshow('compare 2 images', img3)
 cv2.waitKey(0)

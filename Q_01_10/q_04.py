@@ -1,22 +1,21 @@
 """
-画像の2値化
+大津の2値化
 """
 
 import os
 import cv2
 import numpy as np
+import matplotlib.pyplot as plt
 
-def binary_image(img, thread=128):
+def grayscale(img):
     """
-    2値化した画像を返す
+    グレースケール化した画像を返す
     """
     blue = img[:, :, 0].copy()
     green = img[:, :, 1].copy()
     red = img[:, :, 2].copy()
     result = 0.2126 * red + 0.7152 * green + 0.0722 * blue
     result = result.astype(np.uint8)
-    result[result < thread] = 0
-    result[result >= thread] = 255
 
     return result
 
@@ -25,9 +24,15 @@ IMG_FILE_NAME = "kinkaku2.JPG"
 FULL_PATH = os.path.join(BASE_PATH, IMG_FILE_NAME)
 img = cv2.imread(FULL_PATH)
 
-img2 = binary_image(img.copy().astype(np.float))
+img2 = grayscale(img)
+# ravel:1次元化
+# bins:分割数
+# rwidth:棒の幅
+# range:横軸の目盛り
+plt.hist(img2.ravel(), bins=255, rwidth=0.8, range=(0, 255))
+plt.xlabel('value')
+plt.ylabel('appearance')
+plt.show()
 
-# cvtColorを使わないと並べて表示できない
-img3 = cv2.hconcat([img, cv2.cvtColor(img2, cv2.COLOR_GRAY2BGR)])
-cv2.imshow('compare 2 images', img3)
-cv2.waitKey(0)
+# cv2.imshow('grayscale', img2)
+# cv2.waitKey(0)
