@@ -9,7 +9,8 @@ import matplotlib.pyplot as plt
 
 def grayscale(img):
     """
-    グレースケール化した画像を返す
+    input BGR img
+    return grayscale image
     """
     blue = img[:, :, 0].copy()
     green = img[:, :, 1].copy()
@@ -21,7 +22,8 @@ def grayscale(img):
 
 def binary_image(img, thread=128):
     """
-    2値化した画像を返す
+    input BGR img
+    return binary image
     """
     result_img = grayscale(img)
     result_img[result_img < thread] = 0
@@ -31,8 +33,8 @@ def binary_image(img, thread=128):
 
 def ootsu(img):
     """
-    大津の二値化により閾値決定、
-    二値化した画像を返す
+    input BGR img
+    return binary image (thread is decided by otsu)
     """
     gray_img = grayscale(img)
     max_sigma = 0

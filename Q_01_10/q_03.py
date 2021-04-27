@@ -1,5 +1,5 @@
 """
-画像の2値化
+Binary Image
 """
 
 import os
@@ -8,7 +8,8 @@ import numpy as np
 
 def binary_image(img, thread=128):
     """
-    2値化した画像を返す
+    input BGR image
+    return binary image
     """
     blue = img[:, :, 0].copy()
     green = img[:, :, 1].copy()
