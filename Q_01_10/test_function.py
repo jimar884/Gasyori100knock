@@ -15,4 +15,4 @@ img = cv2.imread(FULL_PATH)
 
 a = np.arange(12)
 print(a[3:6])
-print(np.mean(a[3:6]))
+print(np.sum(a[3:6]))
