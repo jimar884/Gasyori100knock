@@ -1,5 +1,5 @@
 """
-Discretion of Color
+hist
 """
 
 import os
@@ -13,6 +13,5 @@ IMG_FILE_NAME = "kinkaku2.JPG"
 FULL_PATH = os.path.join(BASE_PATH, IMG_FILE_NAME)
 img = cv2.imread(FULL_PATH)
 
-a = b = 0
-b = 2
-print(a, b)
+plt.hist(img.ravel(), bins=255, rwidth=0.8, range=(0,255))
+plt.show()
